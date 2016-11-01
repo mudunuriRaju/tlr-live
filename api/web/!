@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_METHOD} OPTIONS
+# otherwise forward it to index.php
+RewriteRule . index.php
+
+#Options FollowSymLinks
+
+<IfModule mod_php5.c>
+php_value memory_limit 2000M
+</IfModule>

@@ -1,0 +1,59 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    # deal with admin first
+    #RewriteCond %{REQUEST_URI} ^/tolls/(profilepic)
+    #RewriteRule ^profilepic/(.*)$ common/profile_pic/$1 [L]
+
+    RewriteCond %{REQUEST_URI} ^/Tolls/(admin)
+    RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
+    RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
+    RewriteRule ^admin/js/(.*)$ backend/web/js/$1 [L]
+
+    RewriteCond %{REQUEST_URI} !^/backend/web/(assets|css|js)/
+    RewriteCond %{REQUEST_URI} ^/Tolls/(admin)
+    RewriteRule ^(.*)$ /tolls/backend/web/index.php [L]
+
+    RewriteCond %{REQUEST_URI} ^/Tolls/(tollapp)
+    RewriteRule ^tollapp/assets/(.*)$ tollbackend/web/assets/$1 [L]
+    RewriteRule ^tollapp/css/(.*)$ tollbackend/web/css/$1 [L]
+    RewriteRule ^tollapp/js/(.*)$ tollbackend/web/js/$1 [L]
+
+    RewriteCond %{REQUEST_URI} !^/tollbackend/web/(assets|css|js)/
+    RewriteCond %{REQUEST_URI} ^/Tolls/(tollapp)
+    RewriteRule ^(.*)$ /tolls/tollbackend/web/index.php [L]
+
+    RewriteCond %{REQUEST_URI} !^/api/web/(assets|css)/
+    RewriteCond %{REQUEST_URI} ^/Tolls/(api)
+    RewriteRule ^(.*)$ /tolls/api/web/index.php [L]
+
+    RewriteCond %{REQUEST_URI} !^/api/web/(assets|css|js)/
+    RewriteCond %{REQUEST_URI} ^/Tolls/(api)
+    RewriteRule ^(.*)$ /tolls/api/web/index.php [L]
+
+    #RewriteCond %{REQUEST_URI} ^/tolls/(f)
+   # RewriteRule ^f/assets/(.*)$ frontend/web/assets/$1 [L]
+
+    #RewriteRule ^f/css/(.*)$ frontend/web/css/$1 [L]
+    #RewriteRule ^f/js/(.*)$ frontend/web/js/$1 [L]
+
+    #RewriteCond %{REQUEST_URI} !^/frontend/web/(assets|css|js)/
+    #RewriteCond %{REQUEST_URI} ^/tolls/(f)
+    #RewriteRule ^(.*)$ /tolls/frontend/web/index.php [L]
+
+    RewriteCond %{REQUEST_URI} ^/(assets|css)
+    RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+    RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+
+
+    RewriteCond %{REQUEST_URI} !^/(frontend|backend|api|tollbackend|profile)/web/(assets|css|js)/
+    RewriteCond %{REQUEST_URI} !index.php
+    RewriteCond %{REQUEST_FILENAME} !-f [OR]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ frontend/web/index.php
+</IfModule>
+#Header add Access-Control-Allow-Origin "*"
+#Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
