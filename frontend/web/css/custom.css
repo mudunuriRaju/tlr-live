@@ -1,0 +1,307 @@
+@charset "utf-8";
+body {
+    margin: 0;
+}
+
+/*-------------------FONT CSS ------------------------------*/
+@font-face {
+    font-family: 'GLight';
+    src: url('../fonts/Gotham-Light.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Gotham-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/Gotham-Light.woff') format('woff'), /* Modern Browsers */ url('../fonts/Gotham-Light.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/Gotham-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'GBook';
+    src: url('../fonts/Gotham-Book.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Gotham-Book.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/Gotham-Book.woff') format('woff'), /* Modern Browsers */ url('../fonts/Gotham-Book.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/Gotham-Book.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'GBold';
+    src: url('../fonts/Gotham-Bold.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/Gotham-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/Gotham-Bold.woff') format('woff'), /* Modern Browsers */ url('../fonts/Gotham-Bold.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/Gotham-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+/*-------------------FONT CSS ------------------------------*/
+#header {
+    background: #444444;
+    height: 80px;
+    padding: 0 7% 0 7%;
+}
+
+.inpTxt {
+    height: 30px;
+    width: 90%;
+    font-family: GLight;
+    color: #999;
+    font-size: 18px;
+    margin: 4px 0 4px 0;
+    text-align: center;
+}
+
+.inpBtn {
+    width: 92%;
+    background: url(../images/btnBg.png) repeat-x;
+    height: 38px;
+    font-family: GLight;
+    color: #000;
+    font-size: 18px;
+    margin-top: 20px;
+    border: #CCC 1px solid;
+}
+
+.inpFrm {
+    margin-top: 30px;
+    background: #444444;
+    padding: 30px;
+}
+
+.frmBox {
+    width: 30%;
+    height: 500px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.logo {
+    padding-top: 13px;
+    float: left;
+    width: 150px;
+}
+
+.login-info {
+    float: right;
+    widows: 250px;
+    padding-top: 20px;
+}
+
+.cap {
+    padding-right: 20px;
+    border-right: #CCC solid 1px;
+    font-family: GLight;
+    color: #ccc;
+    width: 300px;
+    float: left;
+    margin-top: 10px;
+    text-align: right;
+}
+
+.user {
+    padding-left: 20px;
+    float: right;
+    width: 52px;
+}
+
+#nav {
+    height: 50px;
+    background: url(../images/but-bg.png) repeat-x;
+    padding: 0 7% 0 7%;
+}
+
+#nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#nav ul li {
+    display: inline-block;
+    padding-right: 60px;
+}
+
+#nav ul a {
+    font-family: GLight;
+    font-size: 17px;
+    color: #000;
+    line-height: 1.2 !important;
+    text-decoration: none;
+}
+
+.nav {
+    padding-top: 10px;
+    height: 50px;
+}
+
+.nav:hover {
+    background: url(../images/but-hover.png) no-repeat center top;
+}
+
+.active {
+    padding-top: 10px;
+    height: 52px;
+    background: url(../images/but-hover.png) no-repeat center top;
+}
+
+#breadcrumbs {
+    padding: 0 7% 0 7%;
+    margin-top: 24px;
+}
+
+.page-heading {
+    width: 200px;
+    float: left;
+    font-family: GBook;
+    color: #252525;
+    font-size: 20px;
+}
+
+.search {
+    width: 600px;
+    float: right;
+    text-align: right;
+}
+
+.search span {
+    margin-left: 10px;
+}
+
+.myButton {
+    -moz-box-shadow: inset 0px 30px 0px -15px #5e5e5e;
+    -webkit-box-shadow: inset 0px 30px 0px -15px #5e5e5e;
+    box-shadow: inset 0px 30px 0px -15px #5e5e5e;
+    background-color: #444444;
+    border: 1px solid #454545;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: GLight;
+    font-size: 15px;
+    #font-weight: bold;
+    padding: 6px 23px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #7a2a1d;
+}
+
+.myButton:hover {
+    background-color: #2d2d2d;
+}
+
+.myButton:active {
+    position: relative;
+    top: 1px;
+}
+
+.content {
+    clear: both;
+    padding: 40px 7% 0 7%;
+
+}
+
+.tab-header {
+    padding: 12px 6px;
+    font-family: GBook;
+    font-size: 16px;
+    color: #000;
+    border-bottom: #696969 solid 1px;
+}
+
+.tab-header .data {
+    display: inline-block;
+    width: 25%;
+}
+
+.tab-header .data-2 {
+    display: inline-block;
+    width: 25%;
+}
+
+.tab-row {
+    padding: 12px 6px;
+    font-family: GBook;
+    font-size: 16px;
+    color: #424242;
+    border-bottom: #cccccc solid 1px;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.tab-row .data {
+    display: inline-block;
+    width: 25%;
+}
+
+.tab-row-selected {
+    padding: 12px 6px;
+    font-family: GBook;
+    font-size: 16px;
+    color: #000;
+    border-bottom: #cccccc solid 1px;
+    background: #edf4ef;
+}
+
+.btn {
+    /*padding-top: 8.5px;
+    padding-bottom: 8.5px;*/
+    border: 1px solid #454545;
+}
+
+input, select {
+    border: 1px solid #454545 !important;
+}
+
+.btn-default {
+    background-image: none;
+}
+
+.btn-default:hover, .btn-default:focus {
+    background: none;
+    border-color: #454545;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: #ffffff;
+}
+
+.search > .row, .search > .col-md-12 {
+    margin-left: 0px;
+    padding-right: 1px;
+    padding-left: 12px;
+}
+
+.search > .row > .col-md-5 {
+    padding-left: 0px !important;
+
+}
+
+.search > .row > .col-md-1 {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.uib-daypicker > tbody > tr > td > em {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.accordion-toggle > span > .tab-row {
+    border-bottom: none;
+}
+
+.glyphicon-print {
+    color: green;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popover {
+    background-color: #fff;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.img-circle {
+    border-radius: 50%;
+}

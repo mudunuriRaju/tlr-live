@@ -1,0 +1,540 @@
+body {
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+/*-------------------FONT CSS ------------------------------*/
+@font-face {
+    font-family: 'OMUPro-Light';
+    src: url('./fonts/OMUPro-Light.eot'); /* IE9 Compat Modes */
+    src: url('./fonts/OMUPro-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('./fonts/OMUPro-Light.woff') format('woff'), /* Modern Browsers */ url('./fonts/OMUPro-Light.ttf') format('truetype'), /* Safari, Android, iOS */ url('./fonts/OMUPro-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'OMUPro-Medium';
+    src: url('./fonts/OMUPro-Medium.eot'); /* IE9 Compat Modes */
+    src: url('./fonts/OMUPro-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('./fonts/OMUPro-Medium.woff') format('woff'), /* Modern Browsers */ url('./fonts/OMUPro-Medium.ttf') format('truetype'), /* Safari, Android, iOS */ url('./fonts/OMUPro-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'OMUPro-Regular';
+    src: url('./fonts/OMUPro-Regular.eot'); /* IE9 Compat Modes */
+    src: url('./fonts/OMUPro-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('./fonts/OMUPro-Regular.woff') format('woff'), /* Modern Browsers */ url('./fonts/OMUPro-Regular.ttf') format('truetype'), /* Safari, Android, iOS */ url('./fonts/OMUPro-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+/*-------------------FONT CSS ------------------------------*/
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-color: #d3d3d3;
+    border-style: solid;
+    border-width: 0px 1px 1px 1px;
+}
+
+.google-map {
+    width: 100%;;
+    height: 100%;;
+    border-color: #d3d3d3;
+    border-style: solid;
+    border-width: 0px 1px 0px 0px;
+
+}
+
+.but {
+    width: 28px;
+    height: 40px;
+    background-color: #fff;
+    position: absolute;
+    top: 50px;
+    left: 100%;
+    border-color: #d3d3d3;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    background: url(../images/arrow1.png) no-repeat #FFFFFF;
+}
+
+.but1 {
+    width: 28px;
+    height: 40px;
+    background-color: #fff;
+    position: absolute;
+    top: 50px;
+    left: 100%;
+    border-color: #d3d3d3;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    background: url(../images/arrow.png) no-repeat #FFFFFF;
+}
+
+.txt-fld {
+    font-family: OMUPro-Light;
+    font-size: 16px;
+    color: #cecece;
+    width: 97%;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    border: none;
+    border-bottom: #cecece solid 1px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../images/search-icon.png) no-repeat;
+    background-position: right;
+    outline: none;
+}
+
+.google-map-overlay {
+    width: 420px;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border-color: #d3d3d3;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+}
+
+.moh {
+    width: 0px;
+    background: #fff;
+}
+
+.moh1 {
+    display: none;
+}
+
+.grid {
+    padding: 0 20px 0 20px;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.grid .grid-list {
+    overflow: auto;
+    max-height: 300px;
+    margin: 15px -280px 15px 0;
+    padding-right: 280px;
+}
+
+.grid-view-concessioner-list {
+    padding: 10px 0 10px 0;
+    border-bottom: #cecece solid 1px;
+    overflow: auto;
+}
+
+.header {
+    background-color: #3c3c3c;
+    margin-bottom: 20px;
+    height: 70px;
+}
+
+.rightPannel {
+    margin: 0px;
+    padding: 0px;
+}
+
+.rightPanBox {
+    padding-left: 10px;
+    height: 420px;
+}
+
+.header2 {
+    height: 140px;
+    background-color: #ff9600;
+}
+
+.graphMain {
+    margin: 0px;
+    padding: 0px;
+}
+
+.graphBox {
+    background-color: #e7e7e7;
+    background: url(../images/graphBg.png) repeat;
+    border-color: #d3d3d3;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+}
+
+.totalCollection {
+    height: 140px;
+}
+
+.UserCompAnaly {
+    height: 200px;
+    margin-top: 10px;
+}
+
+.axelUsersAnaly {
+    height: 200px;
+    margin-top: 10px;
+}
+
+.direction-but {
+    width: 34px;
+    height: 34px;
+    background: url(../images/direction-icon.png) no-repeat;
+    margin: 5px 0 0 0;
+}
+
+.direction-but1 {
+    width: 34px;
+    height: 34px;
+    background: url(../images/direction-icon-close.png) no-repeat;
+    margin: 5px 0 0 0;
+}
+
+.search-by {
+    font-family: OMUPro-Light;
+    font-size: 16px;
+    color: #fff;
+    width: 60%;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    border: none;
+    border-bottom: #fff solid 1px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../images/drop-arrow.png) no-repeat;
+    background-position: right;
+    outline: none;
+}
+
+.starting-point {
+    font-family: OMUPro-Light;
+    font-size: 16px;
+    color: #fff;
+    width: 60%;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    border: none;
+    padding: 0 0 0 30px;
+    border-bottom: #fff solid 1px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../images/starting-point.png) no-repeat;
+    background-position: 0px 14px;
+    outline: none;
+}
+
+.grid-view-result {
+    font-family: OMUPro-Light;
+    font-size: 18px;
+    color: #181818;
+    overflow: auto;
+    padding-top: 20px;
+}
+
+.grid-view-result1 {
+    font-family: OMUPro-Light;
+    font-size: 14px;
+    color: #181818;
+    overflow: auto;
+}
+
+.disti-point {
+    font-family: OMUPro-Light;
+    font-size: 16px;
+    color: #fff;
+    width: 60%;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    border: none;
+    padding: 0 0 0 30px;
+    border-bottom: #fff solid 1px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../images/disti-point.png) no-repeat;
+    background-position: 0px 14px;
+    outline: none;
+}
+
+/*-------------------bootstrap modifications ------------------------------*/
+.navbar-inverse-custom {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.navbar-custom {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 0px solid transparent;
+}
+
+.navbar-brand-custom {
+    float: left;
+    height: 55px;
+    padding: 0px 0px;
+    font-size: 18px;
+    line-height: 20px;
+    position: relative;
+    z-index: 9999;
+}
+
+.navbar-collapse-custom {
+    padding-right: 15px;
+    padding-left: 15px;
+    overflow-x: visible;
+    position: relative;
+    z-index: 999;
+    background-color: #3c3c3c;
+    -webkit-overflow-scrolling: touch;
+    /*border-top: 1px solid transparent;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);*/
+
+}
+
+.navbar-inverse-custom .navbar-nav > li > a {
+    color: #b1b1b1;
+}
+
+.point-point-but {
+    background: #ff6700 none repeat scroll 0 0;
+    border: 1px solid #ffc096;
+    color: #fff;
+    font-family: OMUPro-Light;
+    margin: 0 0 0 10px;
+    padding: 6px 14px;
+}
+
+.totalCollection {
+    font-family: OMUPro-Light;
+}
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
+
+.p0 {
+    padding: 0;
+}
+
+.disinblo {
+    display: inline-block;
+}
+
+.login-user-icon {
+    height: 68px;
+    padding-bottom: 20px;
+}
+
+.totalCollectionHeading {
+    color: #222222;
+    font-size: 20px;
+    padding-top: 35px;
+}
+
+.totalCollectionAmount {
+    color: #ff9600;
+    font-size: 32px;
+}
+
+#direction span {
+    display: inline-block;
+    width: 60px;
+}
+
+/*-------------------NHA Login start ------------------------------*/
+#NHAloginBox {
+    width: 30%;
+    margin: auto;
+    top: 120px;
+    text-align: center;
+    font-family: OMUPro-Light;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: rgba(225, 225, 225, 0.9);
+    padding: 30px;
+    border: #a9a9a9 solid 1px;
+}
+
+#NHAloginBox img {
+}
+
+#NHAloginBox h2 {
+    color: #313131;
+    padding: 0 5% 0 5%;
+}
+
+#NHAloginBox input, button {
+    font-size: 14px;
+    height: 34px;
+    width: 100%;
+    text-align: center;
+}
+
+#NHAloginBox input[type='text'] {
+    color: #999;
+    border: #e1e1e1 1px solid;
+}
+
+#NHAloginBox button[type='submit'] {
+    background: #ff9600;
+    color: #fff;
+    font-weight: bold;
+    border: #eb8a00 1px solid;
+    margin: 30px 0 30px 0;
+}
+
+video#bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(../images/nhaLoginBg1.jpg) no-repeat;
+    background-size: cover;
+}
+
+video {
+    display: block;
+}
+
+/*-------------------NHA Login end ------------------------------*/
+
+/*------------------------------table start--------------------------*/
+.content-table tr td {
+    padding-top: 4px;
+    padding-bottom: 4px;;
+}
+
+.content-table tr td div {
+    padding: 4px;
+}
+
+.content-table tr {
+    text-align: right;
+}
+
+.content-table .date-row td:first-child {
+    text-align: left;
+}
+
+.content-table thead {
+    border-color: #ff9600;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    font-weight: bold;
+
+}
+
+.content-table tbody {
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+}
+
+.border-dark {
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+}
+
+.border-light-left {
+    border-left: #D1D1D1 1px solid;
+}
+
+.border-light {
+    border-color: #D1D1D1;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+}
+
+.pad-left-right {
+    padding: 10px 30px;
+}
+
+.pad-left-right span {
+    margin-right: 20px;
+}
+
+.pad-left-right span:last-child {
+    margin-right: 0;
+}
+
+.list-field {
+    font-family: OMUPro-Light;
+    font-size: 16px;
+    color: #adadad;
+    width: 20%;
+    padding: 0 0 0 2px;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    border: none;
+    border-bottom: #adadad solid 1px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../images/drop-arrow1.png) no-repeat;
+    background-position: right;
+    outline: none;
+}
+
+/*------------------------------table end--------------------------*/
+
+/*-------------------bootstrap modifications ------------------------------*/
+/*-------------------media start ------------------------------*/
+@media all and (min-width: 200px) and (max-width: 480px) {
+
+}
+
+@media all and (min-width: 481px) and (max-width: 767px) {
+
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+@media all and (min-width: 800px) and (max-width: 1024px) {
+
+}
+
+@media all and (min-width: 980px) and (max-width: 1024px) {
+
+}
+
+@media all and (min-width: 1280px) and (max-width: 1920px) {
+
+}
+
+@media all and (min-width: 1280px) {
+
+}
+
+@media all and (min-width: 1920px) {
+
+}
+
+/*-------------------media end ------------------------------*/
+
