@@ -55,17 +55,6 @@ class TollController extends Controller
 //        ];
 //        }
         #special rules for particular action
-        $behaviors['actions'] = [
-            'Sampleeb' => [
-                #web-servers which you alllow cross-domain access
-                'Origin' => ['*'],
-                'Access-Control-Request-Method' => ['POST'],
-                'Access-Control-Request-Headers' => ['*'],
-                'Access-Control-Allow-Credentials' => null,
-                'Access-Control-Max-Age' => 86400,
-                'Access-Control-Expose-Headers' => [],
-            ]
-        ];
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
             'cors' => [
