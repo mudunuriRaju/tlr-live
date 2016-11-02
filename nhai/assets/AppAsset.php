@@ -31,6 +31,8 @@ class AppAsset extends AssetBundle
         'js/angular-1.5.5/angular-cookies.min.js',
         'js/angular-1.5.5/angular-route.min.js',
         'js/RouteBoxer.js',
+        'http://d3js.org/d3.v3.min.js',
+        'js/c3.js',
         'js/scripts.js',
         'js/scrolltopcontrol.js',
         'js/gMap.js',

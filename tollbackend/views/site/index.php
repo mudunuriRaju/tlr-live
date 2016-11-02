@@ -52,7 +52,7 @@
                          src="<?php echo Yii::$app->request->baseUrl; ?>/images/user.png">
                 </div>
                 <div class="login-user-text disinblo">
-                    <div align="left" style="color:#ff9600; font-weight: 600;font-family: OMUPro-Light">Subba Raju</div>
+                    <div align="left" style="color:#ff9600; font-weight: 600;font-family: OMUPro-Light"><?php echo Yii::$app->user->identity->email;?></div>
                     <div align="left" style="padding-left: 10px;"><a
                             href="<?php echo Yii::$app->request->baseUrl; ?>/site/logout">Logout</a></div>
                 </div>
@@ -68,8 +68,14 @@
                     <div class="totalCollectionHeading">TOTAL COLLECTION</div>
                     <div class="totalCollectionAmount">₹ 24,52,025</div>
                 </div>
-                <div class="graphBox UserCompAnaly"></div>
-                <div class="graphBox axelUsersAnaly"></div>
+                <div class="graphBox UserCompAnaly" style="display:none;">
+                    <div id="chart" style="width:100%;height: 200px;"></div>
+                    <!--<img width="280px" src="<?php //echo Yii::$app->request->baseUrl; ?>/images/groph2_360.png"/>--></div>
+
+                <div class="graphBox axelUsersAnaly">
+                    <div id="vchart" style="width:100%;height: 200px;"></div>
+                <!--<div class="graphBox UserCompAnaly"></div>
+                <div class="graphBox axelUsersAnaly"></div>-->
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 rightPannel">
                 <div class="rightPanBox">

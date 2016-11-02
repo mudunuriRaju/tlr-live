@@ -28,3 +28,10 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
+.htaccess
+.htaccessold
+common/config/bootstrap.php~
+frontend/web/js/angular/i18n/ngLocale/
+nhai/web/js/angular-1.5.5/i18n/ngLocale/
+tests/
+tollbackend/web/js/angular-1.5.5/i18n/ngLocale/

@@ -24,6 +24,7 @@ use GeoTools\LatLng;
 use GeoTools\LatLngBounds;
 use GeoTools\LatLngCollection;
 use Geokit\Math;
+use api\models\tollusers;
 
 
 /**
@@ -54,17 +55,6 @@ class TollController extends Controller
 //        ];
 //        }
         #special rules for particular action
-        $behaviors['actions'] = [
-            'Sampleeb' => [
-                #web-servers which you alllow cross-domain access
-                'Origin' => ['*'],
-                'Access-Control-Request-Method' => ['POST'],
-                'Access-Control-Request-Headers' => ['*'],
-                'Access-Control-Allow-Credentials' => null,
-                'Access-Control-Max-Age' => 86400,
-                'Access-Control-Expose-Headers' => [],
-            ]
-        ];
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
             'cors' => [
@@ -1044,5 +1034,24 @@ class TollController extends Controller
             $points[] = array($lat * 1e-5, $lng * 1e-5);
         }
         return $points;
+    }
+
+
+    public function actionCtollslist(){
+        $toll_user_id = Yii::$app->request->post('toll_user_id');
+        $user = TollUsers::findIdentity($toll_user_id);
+        if(!empty($user->group_id)){
+            $data = Tolls::find()->where(['tbl_tolls.group_id' => $user->group_id])->all();
+        }else {
+            $data = Tolls::find()->where(['tbl_tolls.toll_id' => $user->toll_id])->all();
+        }
+        //$data = Tolls::find()->where(['toll_status' => 10])->andWhere(['like','toll_location',$id])->all();
+        if ($data) {
+            $output = ["Code" => 200, "Info" => $data];
+        } else {
+            $output = ['Code' => 204, 'Message' => 'No Content'];
+        }
+        //Yii::$app->alog->userLog($id, [Yii::$app->request->absoluteUrl, date('Y-m-d H:i:s'), json_encode($id), json_encode($output)]);
+        return $output;
     }
 }
