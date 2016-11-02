@@ -44,7 +44,7 @@ var Tollr = angular.module('Tollr', ['ngAnimate', 'ngCookies']);
         };
 
         $scope.exelDownload = function () {
-            var blob = new Blob([document.getElementById('exportable').innerHTM], {
+            var blob = new Blob([document.getElementById('report_screen').innerHTML], {
                 type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
             });
             saveAs(blob, "Report.xls");

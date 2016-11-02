@@ -30,6 +30,7 @@ class AppAsset extends AssetBundle
         'js/angular-1.5.5/angular-cookies.min.js',
         'https://maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places',
         'js/RouteBoxer.js',
+        'js/c3.js',
         'js/scripts.js',
         'js/scrolltopcontrol.js',
         'js/gMap.js',

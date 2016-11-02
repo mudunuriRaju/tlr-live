@@ -11,12 +11,12 @@
 var Tollr = angular.module('Tollr', ['ngAnimate', 'ngCookies']);
 (function (angular) {
     'use strict';
-    var myApp = angular.module('Tollr', ['google.places', 'ngAnimate', 'ngCookies']);
-    myApp.controller('Consess', Consess);
-    function Consess($scope, $filter, $timeout, $element, $http, listService) {
+    var myApp = angular.module('Tollr', ['google.places','ngAnimate', 'ngCookies','ngRoute','ng-fusioncharts']);
+    myApp.controller('Consess',Consess );
+    function Consess($scope, $filter, $timeout, $element, $http, listService,$location,$rootScope,reportService) {
         $scope.showState = true;
-        $scope.fromPoint = null;
-        $scope.tooint = null;
+        $scope.fromPoint =null;
+        $scope.tooint =null;
         $scope.directionBut = 'direction-but';
         $scope.SelectedState = "India";
         $scope.ListedTollsCount = 0;
@@ -25,7 +25,65 @@ var Tollr = angular.module('Tollr', ['ngAnimate', 'ngCookies']);
         $scope.filterCondition = {
             operator: ''
         };
+        $scope.reqs_type = 'Daily';
+        $scope.require_types =[
+            {name:'Daily',value:1},
+            {name:'Month',value:2}
+        ];
+        $scope.dataRT = {selectedOption : $scope.require_types[0].value};
+        /* $scope.dataSource =  '{ "chart": { "caption": "Tollr Entries", "captionFontBold": "0", "captionFontSize": "20", "xAxisName": "Entry Type", "xAxisNameFontSize": "15", "xAxisNameFontBold": "0", "yAxisName": "Count", "yAxisNameFontSize": "15", "yAxisNameFontBold": "0", "paletteColors": "#F6861F", "plotFillAlpha": "80", "usePlotGradientColor": "0", "numberPrefix": "$", "bgcolor": "#E7E7E7", "bgalpha": "95", "canvasbgalpha": "0", "basefontcolor": "#141414", "showAlternateHGridColor": "0", "divlinealpha": "50", "divlinedashed": "0", "toolTipBgColor": "#000", "toolTipPadding": "10", "toolTipBorderRadius": "5", "toolTipBorderThickness": "2", "toolTipBgAlpha": "62", "toolTipBorderColor": "", "rotateyaxisname": "1", "canvasbordercolor": "#ffffff", "canvasborderthickness": ".3", "canvasborderalpha": "100", "showValues": "0", "plotSpacePercent": "12" }, "data": [{ "label": "Tollered vechicals", "value": "4985" }, { "label": "Tollered With Errors", "value": "285" }, { "label": "Wrong Entries", "value": "123" }]}';
+         $scope.vdataSource =  '{ "chart": { "caption": "Vechical Entries", "captionFontBold": "0", "captionFontSize": "20", "xAxisName": "Vechical Types", "xAxisNameFontSize": "15", "xAxisNameFontBold": "0", "yAxisName": "Count", "yAxisNameFontSize": "15", "yAxisNameFontBold": "0", "paletteColors": "#F6861F", "plotFillAlpha": "80", "usePlotGradientColor": "0", "numberPrefix": "", "bgcolor": "#E7E7E7", "bgalpha": "95", "canvasbgalpha": "0", "basefontcolor": "#141414", "showAlternateHGridColor": "0", "divlinealpha": "50", "divlinedashed": "0", "toolTipBgColor": "#000", "toolTipPadding": "10", "toolTipBorderRadius": "1", "toolTipBorderThickness": "2", "toolTipBgAlpha": "62", "toolTipBorderColor": "", "rotateyaxisname": "1", "canvasbordercolor": "#ffffff", "canvasborderthickness": ".3", "canvasborderalpha": "100", "showValues": "0", "plotSpacePercent": "12" }, "data": [{ "label": "Bike", "value": "10" }, { "label": "Jeep/van", "value": "32" }, { "label": "LCV", "value": "22" },{ "label": "Bus/Truck", "value": "6" },{ "label": "Upto 3 Axle", "value": "41" },{ "label": "4to6 Axle", "value": "15" },{ "label": "HCM/EME", "value": "25" },{ "label": "7 or More Axle", "value": "16" }]}';*/
+//console.log($scope.require_types[0].value);
+        //$scope.req_type =  $scope.require_types[0].name;
+        $scope.id_month_select = true;
+        $scope.req_type_change = function(){
+            $scope.id_month_select = true;
+            if($scope.dataRT.selectedOption == 2){
+                $scope.id_month_select = false;
+            }
+            reportService.report_list($http, $scope);
+        };
+        $scope.exelDownload = function(){
+            var blob = new Blob([document.getElementById('report_screen').innerHTML], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            });
+            saveAs(blob, "Report.xls");
 
+        };
+        $scope.requestDateFormat = function(){
+            if($scope.dataRT.selectedOption == 2){
+                return 'MMM/y';
+            }else{
+                return 'shortDate';
+            }
+        }
+        $scope.change_month = function(){
+            reportService.report_list($http, $scope);
+        }
+        $scope.ChangedStateReport = function(names, query){
+            $scope.queryData = $filter('filter')(names, query);
+            if($scope.queryData[0].state == 'Selected All'){
+                $scope.SelectedState = 'India';
+            }else{
+                $scope.SelectedState = $scope.queryData[0].state;
+            }
+            reportService.report_list($http, $scope);
+        }
+
+        $scope.getAmount = function (vehical_type, report) {
+            if(isNull(report['amount_'+vehical_type.vechical_types_id]))
+                return 0;
+            else
+                return report['amount_'+vehical_type.vechical_types_id];
+        }
+        if($('#report_screen').length > 0){
+            $scope.vehical_types = vehical_types;
+            $scope.H_reports = reports;
+            $scope.month_options = month_options;
+            $scope.dataM = {selectedOption : $scope.month_options[0].name};
+            $scope.counter = counters;
+            $scope.average = counters.sum_amount/total_count;
+        }
         $scope.searchedList = [];
         $scope.states = [
             {short_code: "", state: "Selected All"},
@@ -58,51 +116,51 @@ var Tollr = angular.module('Tollr', ['ngAnimate', 'ngCookies']);
             {short_code: "Rajasthan", state: "Rajasthan"},
             {short_code: "Sikkim", state: "Sikkim"},
             {short_code: "Tamil Nadu", state: "Tamil Nadu"},
+            {short_code: "Telangana", state: "Telangana"},
             {short_code: "Tripura", state: "Tripura"},
             {short_code: "Uttar Pradesh", state: "Uttar Pradesh"},
             {short_code: "Uttarakhand", state: "Uttarakhand"},
             {short_code: "West Bengal", state: "West Bengal"}];
         $scope.ChangedState = function (names, query) {
             $scope.queryData = $filter('filter')(names, query);
-            if ($scope.queryData[0].state == 'Selected All') {
+            if($scope.queryData[0].state == 'Selected All'){
                 $scope.SelectedState = 'India';
-            } else {
+            }else{
                 $scope.SelectedState = $scope.queryData[0].state;
             }
             listService.getList($http, $scope, listService);
             //console.log($scope.queryData[0].state);
         };
-        $scope.changeShowState = function () {
-            if ($scope.showState) {
+        $scope.changeShowState = function(){
+            if($scope.showState){
                 $scope.showState = false;
                 $scope.directionBut = 'direction-but1';
                 listService.DeleteMarkers();
-                listService.findByRoute($http, $scope);
-            } else {
+                listService.findByRoute($http,$scope);
+            }else{
                 $scope.showState = true;
                 $scope.directionBut = 'direction-but';
                 listService.getList($http, $scope, listService);
             }
         }
-        $scope.findTolls = function () {
-            listService.findByRoute($http, $scope);
+        $scope.findTolls = function(){
+            listService.findByRoute($http,$scope);
         }
-
         $scope.searchToll = searchToll;
-
         function searchToll(names, query) {
             $scope.queryData = $filter('filter')(names, query);
             $scope.searchedList = $scope.queryData;
         };
         //
-        listService.initialize($http, $scope, listService);
-        //listService.getList($http, $scope,listService);
-
-
+        //console.log(pathInfo);
+        if(pathInfo == ''){//console.log($http);
+            listService.initialize($http, $scope, listService);
+            // console.log(initialize);
+        }
+        listService.getList($http, $scope,listService);
     };
 
 })(window.angular);
-
 //Fav Controller
 angular.module('Tollr')
     .controller('Ctrl2', function ($scope, $http, $filter) {
@@ -148,36 +206,37 @@ angular.module('Tollr')
 });
 
 angular.module('Tollr').service('listService', function () {
-
+    var filter_data={};
     return {
-        getList: function ($http, $scope, listService) {
+        getList: function ($http, $scope,listService) {
             listService.DeleteMarkers();
+            filter_data.toll_user_id = toll_user_id;
             $http.defaults.headers.post["Accept"] = "*/*";
             $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
             $http({
-                url: base_url + "/../api/2119/t/tl/" + $scope.SelectedState,
-                method: "GET",
+                url: base_url + "/../api/2119/t/ctl",
+                method: "POST",
+                data: $.param(filter_data)
             })
                 .then(function (response) {
-
                         if (response.data.Code == 200) {
                             var places;
                             if (response.data.Info.length > 0) {
                                 $scope.searchedList = $scope.tollList = response.data.Info;
                                 $scope.ListedTollsCount = response.data.Info.length;
-                                if ($scope.SelectedState == "India") {
-                                    $scope.TollsIndiaCount = response.data.Info.length;
+                                if($scope.SelectedState == "India"){
+                                    $scope.TollsIndiaCount =response.data.Info.length;
                                 }
                             } else {
                                 $scope.ListedTollsCount = 0;
                                 $scope.searchedList = $scope.tollList = [];
                             }
                             places = response.data.Info;
-                            //console.log(places);
+
                             for (i in places) {
                                 var coords = new google.maps.LatLng(places[i].toll_lat, places[i].toll_lng);
                                 listService.createMarker(map, coords, places[i].toll_location);
-                                content = places[i].toll_location + '</br><a href="' + places[i].toll_location + '">See report</a>';
+                                content = places[i].toll_location + '</br><a href="site/report?id='+places[i].toll_id+'">See report</a>';
                                 google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
                                     return function () {
                                         infowindow.setContent(content);
@@ -190,7 +249,6 @@ angular.module('Tollr').service('listService', function () {
                             $scope.ListedTollsCount = 0;
                             $scope.searchedList = $scope.tollList = [];
                         }
-
                         return response;
                         //console.log(response);
                     },
@@ -199,7 +257,7 @@ angular.module('Tollr').service('listService', function () {
                         // failed
                     });
         },
-        codeLatLng: function (lat, lng, $http, $scope, listService) {
+        codeLatLng: function (lat, lng, $http,$scope,listService) {
 
             var latlng = new google.maps.LatLng(lat, lng);
             geocoder.geocode({'latLng': latlng}, function (results, status) {
@@ -222,13 +280,13 @@ angular.module('Tollr').service('listService', function () {
                         //city data
 
                         country = city.long_name;
-                        listService.getList($http, $scope, listService)
+                        listService.getList($http, $scope,listService)
                         //findTolls();
                         //return listService.getList($http,$scope,listService);
 
 
                     } else {
-                        alert("No results found");
+                        alert("Not able locate present Location");
                     }
                 } else {
                     alert("Geocoder failed due to: " + status);
@@ -248,14 +306,16 @@ angular.module('Tollr').service('listService', function () {
 
             return marker;
         },
-        initialize: function ($http, $scope, listService) {
+        initialize: function ($http,$scope, listService) {
+//console.log('initialize');
             geocoder = new google.maps.Geocoder();
             if (navigator.geolocation) {
+
+                //   console.log(navigator.geolocation);
                 navigator.geolocation.getCurrentPosition(function (position) {
 
-                    geolocation = new google.maps.LatLng(
-                        position.coords.latitude, position.coords.longitude);
-                    listService.codeLatLng(position.coords.latitude, position.coords.longitude, $http, $scope, listService);
+                    geolocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    listService.codeLatLng(position.coords.latitude, position.coords.longitude,$http,$scope,listService);
                     map = new google.maps.Map(document.getElementById("google-map"), {
                         center: new google.maps.LatLng(
                             position.coords.latitude, position.coords.longitude),
@@ -263,6 +323,17 @@ angular.module('Tollr').service('listService', function () {
                         mapTypeId: google.maps.MapTypeId.DRIVING
                     });
 
+                },function(failure){
+                    if(failure.message.indexOf("Only secure origins are allowed") == 0) {
+                        // Secure Origin issue.'
+                        listService.codeLatLng(21.324196, 78.013832,$http,$scope,listService);
+                        map = new google.maps.Map(document.getElementById("google-map"), {
+                            center: new google.maps.LatLng(
+                                21.324196, 	78.013832),
+                            zoom: 5,
+                            mapTypeId: google.maps.MapTypeId.DRIVING
+                        });
+                    }
                 });
 
             }
@@ -275,18 +346,74 @@ angular.module('Tollr').service('listService', function () {
 
 
         },
-        DeleteMarkers: function () {
+
+        DeleteMarkers:function() {
             //Loop through all the markers and remove
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
             }
             markers = [];
         },
-        findByRoute: function ($http, $scope) {
-            if ($scope.fromPoint.length > 0 && $scope.toPoint.length > 0) {
+        findByRoute: function($http,$scope){
+            if($scope.fromPoint.length > 0 && $scope.toPoint.length > 0){
                 console.log($scope.fromPoint);
             }
         }
 
     };
+});
+
+angular.module('Tollr').service('reportService', function () {
+    var report_list = report_list;
+
+    var service = {
+        report_list : report_list,
+    };
+
+    function report_list($http, $scope){
+        var filter_data = {};
+        if($scope.SelectedState.length > 0){
+            filter_data.state= $scope.SelectedState
+        }
+        $scope.reqs_type = "Monthly";
+        filter_data.type_report= $scope.dataRT.selectedOption
+        if($scope.dataRT.selectedOption == 1){
+            filter_data.selected_month = $scope.dataM.selectedOption;
+            $scope.reqs_type = "Daily";
+        }
+
+        if(toll_id.length > 0 || toll_id != 'undefined'){
+            filter_data.toll_id = toll_id;
+        }
+
+        $http.defaults.headers.post["Accept"] = "*/*";
+        $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+        $http({
+            url: base_url + "/../api/2419/hra/r",
+            method: "POST",
+            data: $.param(filter_data)
+        })
+            .then(function (response) {
+
+                    if (response.data.Code == 200) {
+                        $scope.H_reports = response.data.Info;
+                        $scope.counter = response.data.Counters;
+                        $scope.average = response.data.Counters.sum_amount/response.data.Count;
+
+
+                    } else {
+                        $scope.ListedTollsCount = 0;
+                        $scope.searchedList = $scope.tollList = [];
+                        $scope.average = 0;
+                    }
+
+                    return response;
+                    //console.log(response);
+                },
+                function (response) { // optional
+                    //console.log(response);
+                    // failed
+                });
+    }
+    return service;
 });

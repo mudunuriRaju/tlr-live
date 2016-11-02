@@ -72,7 +72,7 @@ return [
                     'pluralize' => false,
                     //'pattern' => '2001',
                     'extraPatterns' => [
-                        'POST cmp' => 'createmonthlypass', 'GET mpl/<id>' => 'montlypasslist', 'POST mpc' => 'monthlypasscost', 'POST c1' => 'create1', 'POST sw' => 'sampleweb', 'POST calternative' => 'create01122015', 'GET tl/<id>' => 'tollslist', 'POST rt' => 'regiontolls'
+                        'POST cmp' => 'createmonthlypass', 'GET mpl/<id>' => 'montlypasslist', 'POST mpc' => 'monthlypasscost', 'POST c1' => 'create1', 'POST sw' => 'sampleweb', 'POST calternative' => 'create01122015', 'GET tl/<id>' => 'tollslist', 'POST rt' => 'regiontolls', 'POST ctl' => 'ctolllist'
                     ]
                     //'route' => 'post/index',
                 ],
